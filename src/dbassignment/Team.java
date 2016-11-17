@@ -1,39 +1,35 @@
 package dbassignment;
 
-public class Team {
+import java.util.ArrayList;
+
+public abstract class Team implements DataAccessObject {
+
     private int team_id;
     private String teamname;
 
-    public Team()
-    {
-        
+    public Team() {
+
     }
 
-    public Team(int team_id, String teamname)
-    {
+    public Team(int team_id, String teamname) {
         this.team_id = team_id;
         this.teamname = teamname;
     }
 
-    public int getTeam_id()
-    {
-        return team_id;
+    public ArrayList<User> getTeamMembers(int team_id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setTeam_id(int team_id)
-    {
-        this.team_id = team_id;
+    public ArrayList<Team> getTeams() {
+        return null;
     }
 
-    public String getTeamname()
-    {
-        return teamname;
+    public Team getTeam(int id) {
+        return null;
     }
 
-    public void setTeamname(String teamname)
-    {
-        this.teamname = teamname;
+    public Team getTeam(String teamname) {
+        return null;
     }
-    
-    
+
 }
