@@ -1,10 +1,8 @@
 package dbassignment;
 
 public class DBMain {
-
-    public static void main(String[] args) {
-        DataAccessObject dao = new DataAccessObject();
-        
+private static DataAccessObject dao;
+    public static void main(String[] args) {        
         
     }
 }

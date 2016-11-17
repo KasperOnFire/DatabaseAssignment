@@ -2,6 +2,7 @@ package dbexamplesolution;
 
 
 import java.util.ArrayList;
+import dbassignment.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
