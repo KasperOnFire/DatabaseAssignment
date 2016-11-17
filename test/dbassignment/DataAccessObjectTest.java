@@ -1,20 +1,15 @@
-package dbexamplesolution;
-
+package dbassignment;
 
 import java.util.ArrayList;
-import dbassignment.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-
 public class DataAccessObjectTest {
 
-
     private static DBConnector connector;
-    private static DataAccessObjectInterface dao;
-
+    private static DataAccessObjectImpl dao;
 
     // Setup
     @BeforeClass
@@ -26,12 +21,10 @@ public class DataAccessObjectTest {
         }
     }
 
-
     @Before
     public void setUp() {
         dao = new DataAccessObjectImpl(connector);
     }
-
 
     // Test teams
     @Test
@@ -39,34 +32,29 @@ public class DataAccessObjectTest {
         // Positive test
         User user;
 
-
         ArrayList<User> teamMembers = dao.getTeamMembers(1);
         assertNotNull(teamMembers);
         assertFalse(teamMembers.isEmpty());
         assertEquals(teamMembers.size(), 3);
 
-
         user = teamMembers.get(0);
-        assertEquals(user.getId(), 2);
+        assertEquals(user.getUser_id(), 2);
         assertEquals(user.getUsername(), "Mickey Mouse");
         assertEquals(user.getPassword(), "5678");
         assertEquals(user.isAdmin(), true);
 
-
         user = teamMembers.get(1);
-        assertEquals(user.getId(), 3);
+        assertEquals(user.getUser_id(), 3);
         assertEquals(user.getUsername(), "Fedtmule");
         assertEquals(user.getPassword(), "1234");
         assertEquals(user.isAdmin(), false);
 
-
         user = teamMembers.get(2);
-        assertEquals(user.getId(), 7);
+        assertEquals(user.getUser_id(), 7);
         assertEquals(user.getUsername(), "Pluto");
         assertEquals(user.getPassword(), "1234");
         assertEquals(user.isAdmin(), false);
     }
-
 
     @Test
     public void testGetTeamMembersInValidTeamID() {
@@ -76,27 +64,24 @@ public class DataAccessObjectTest {
         assertTrue(teamMembers.isEmpty());
     }
 
-
     @Test
     public void testGetAllTeams() {
         ArrayList<Team> teams = dao.getTeams();
         assertNotNull(teams);
         assertFalse(teams.isEmpty());
         Team team = teams.get(0);
-        assertEquals(team.getName(), "A");
-        assertEquals(team.getMembers().size(), 3);
+        assertEquals(team.getTeamname(), "A");
+        assertEquals(team.getTeamMembers().size(), 3);
     }
-
 
     @Test
     public void testGetTeamByID() {
         // positive test
         Team team = dao.getTeam(1);
         assertNotNull(team);
-        assertEquals(team.getName(), "A");
-        assertEquals(team.getMembers().size(), 3);
+        assertEquals(team.getTeamname(), "A");
+        assertEquals(team.getTeamMembers().size(), 3);
     }
-
 
     @Test
     public void testGetTeamByInvalidID() {
@@ -105,16 +90,14 @@ public class DataAccessObjectTest {
         assertNull(team);
     }
 
-
     @Test
     public void testGetTeamByTeamName() {
         // positive test
         Team team = dao.getTeam("A");
         assertNotNull(team);
-        assertEquals(team.getId(), 1);
-        assertEquals(team.getMembers().size(), 3);
+        assertEquals(team.getTeam_id(), 1);
+        assertEquals(team.getTeamMembers().size(), 3);
     }
-
 
     @Test
     public void testGetTeamByInvalidTeamName() {
@@ -123,26 +106,19 @@ public class DataAccessObjectTest {
         assertNull(team);
     }
 
-
     // Test users
     @Test
     public void testGetAllUsers() {
         fail();
     }
 
-
     @Test
     public void testGetUserByID() {
         fail();
     }
-
 
     @Test
     public void testGetUserByName() {
         fail();
     }
 }
-
-
-
-
