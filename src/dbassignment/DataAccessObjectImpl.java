@@ -40,13 +40,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
 
     @Override
     public Team getTeam(int id) {
-        sql = "select team_id from team_member where user_id = " + id;
-        try {
-            
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DataAccessObjectImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
     @Override
@@ -61,17 +55,40 @@ public class DataAccessObjectImpl implements DataAccessObject {
 
     @Override
     public User getUser(int id) {
-        sql = "select * from user where user_id="+id;
-        try{
-            rs.getString("username");
+        sql = "select * from user where user_id=" + id;
+        try {
+            if (rs.next()) {
+                int uid = rs.getInt("user_id");
+                String name = rs.getString("username");
+                String pw = rs.getString("password");
+                boolean adm = rs.getBoolean("admin");
+                User returner = new User(uid, name, pw, adm);
+                return returner;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(DataAccessObjectImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        return null;
     }
 
     @Override
     public User getUser(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sql = "select * from user where username=" + username;
+        try {
+            if (rs.next()) {
+                int uid = rs.getInt("user_id");
+                String name = rs.getString("username");
+                String pw = rs.getString("password");
+                boolean adm = rs.getBoolean("admin");
+                User returner = new User(uid, name, pw, adm);
+                return returner;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataAccessObjectImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
     }
 
 }

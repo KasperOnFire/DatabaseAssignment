@@ -1,6 +1,6 @@
 package dbassignment;
 
-public abstract class Team {
+public class Team {
 
     private int team_id;
     private String teamname;

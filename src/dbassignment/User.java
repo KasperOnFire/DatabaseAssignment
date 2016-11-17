@@ -2,7 +2,7 @@ package dbassignment;
 
 import java.util.ArrayList;
 
-public abstract class User {
+public class User {
 
     private int user_id;
     private String username;
