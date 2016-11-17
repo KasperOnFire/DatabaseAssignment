@@ -30,17 +30,38 @@ public class DataAccessObjectImpl implements DataAccessObject {
 
     @Override
     public ArrayList<User> getTeamMembers(int team_id) {
-
+        ArrayList<> teamusers = new ArrayList<>;
+        sql = "select * from users where user_id = (select * from team_members where team_id ="+team_id+")";
+        try {
+            if(rs.next()){
+                
+            }
+        } catch (SQLException ex){
+            Logger.getLogger(DataAccessObjectImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public ArrayList<Team> getTeams() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public Team getTeam(int id) {
-        
+        sql = "select * from team where team_id=" + id;
+        try {
+            if (rs.next()) {
+                int tid = rs.getInt("team_id");
+                String name = rs.getString("teamname");
+                Team returner = new Team(tid, name);
+                return returner;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataAccessObjectImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
     }
 
     @Override
