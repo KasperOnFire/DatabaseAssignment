@@ -2,6 +2,7 @@ package dbassignment;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -29,7 +30,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
 
     @Override
     public ArrayList<User> getTeamMembers(int team_id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
@@ -39,7 +40,13 @@ public class DataAccessObjectImpl implements DataAccessObject {
 
     @Override
     public Team getTeam(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sql = "select team_id from team_member where user_id = " + id;
+        try {
+            
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DataAccessObjectImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -54,7 +61,12 @@ public class DataAccessObjectImpl implements DataAccessObject {
 
     @Override
     public User getUser(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sql = "select * from user where user_id="+id;
+        try{
+            rs.getString("username");
+        } catch (SQLException ex) {
+            Logger.getLogger(DataAccessObjectImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
