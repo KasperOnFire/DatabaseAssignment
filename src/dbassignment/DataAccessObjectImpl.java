@@ -14,7 +14,6 @@ public class DataAccessObjectImpl implements DataAccessObject {
     private DBConnector db = null;
     private Connection conn = null;
 
-    
     //The class constructor gives access to the getters in the class, 
     //which give access to the database. The constructor also opens a 
     //connection to the database.
@@ -28,9 +27,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
         }
     }
 
-    
     //The getter methods are relatively self-explanatory due to proper naming.
-    
     //getTeamMembers returns the users in the database that are members 
     //of the selected team.
     @Override
@@ -78,7 +75,6 @@ public class DataAccessObjectImpl implements DataAccessObject {
         return null;
     }
 
-    
     //getTeam returns a specific team, including its members.
     //There are two versons of getTeam, this one searches by team id.
     @Override
@@ -123,7 +119,6 @@ public class DataAccessObjectImpl implements DataAccessObject {
         return null;
     }
 
-    
     //getUsers returns all users and stores them in an ArrayList.
     @Override
     public ArrayList<User> getUsers() {

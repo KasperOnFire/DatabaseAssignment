@@ -122,12 +122,11 @@ public class DataAccessObjectTest {
         assertNotNull(testuser);
         assertEquals(testuser.getUser_id(), 3);
     }
-    
+
     @Test
     public void testGetUserByInvalidID() {
         // negative test
         User testuser = dao.getUser(9);
-        assertNotNull(testuser);
         assertNull(testuser);
     }
 
@@ -138,12 +137,11 @@ public class DataAccessObjectTest {
         assertNotNull(testuser);
         assertEquals(testuser.getUsername(), "Anders And");
     }
-    
+
     @Test
     public void testGetUserByInvalidName() {
         //negative test
         User testuser = dao.getUser("Sergei Ivanov");
-        assertNotNull(testuser);
         assertNull(testuser);
     }
 }
