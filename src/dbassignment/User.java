@@ -36,4 +36,20 @@ public abstract class User implements DataAccessObject {
         return "user_id " + user_id + ", username " + username + ", password " + password + ", admin " + admin;
     }
 
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
 }
