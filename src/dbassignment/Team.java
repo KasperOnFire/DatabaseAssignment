@@ -12,18 +12,22 @@ public abstract class Team implements DataAccessObject {
         this.teamname = teamname;
     }
 
+    @Override
     public ArrayList<User> getTeamMembers(int team_id) {
         return null;
     }
 
+    @Override
     public ArrayList<Team> getTeams() {
         return null;
     }
 
+    @Override
     public Team getTeam(int id) {
         return null;
     }
 
+    @Override
     public Team getTeam(String teamname) {
         return null;
     }

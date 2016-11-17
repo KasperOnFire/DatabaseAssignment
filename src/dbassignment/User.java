@@ -16,23 +16,24 @@ public abstract class User implements DataAccessObject {
         this.admin = admin;
     }
 
+    @Override
     public ArrayList<User> getUsers() {
         return null;
     }
 
+    @Override
     public User getUser(int id) {
         return null;
     }
 
+    @Override
     public User getUser(String username) {
         return null;
     }
-    
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "user_id " + user_id + ", username " + username + ", password " + password + ", admin " + admin;
     }
-            
 
 }
