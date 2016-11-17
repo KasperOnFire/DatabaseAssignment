@@ -21,8 +21,6 @@ public class Team {
     public String getTeamname() {
         return teamname;
     }
-
-    //Hvad skal der ske her??
     public ArrayList<User> getTeamMembers() {
         return teamMembers;
     }

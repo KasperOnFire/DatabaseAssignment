@@ -109,16 +109,24 @@ public class DataAccessObjectTest {
     // Test users
     @Test
     public void testGetAllUsers() {
-        fail();
+        // positive test
+        ArrayList<User> users = dao.getUsers();
+        assertNotNull(users);
+        assertEquals(users.size(), 8);
     }
 
     @Test
     public void testGetUserByID() {
-        fail();
+        // positive test
+        User testuser = dao.getUser(3);
+        assertNotNull(testuser);
+        assertEquals(testuser.getUser_id(), 3);
     }
 
     @Test
     public void testGetUserByName() {
-        fail();
+        User testuser = dao.getUser("Anders And");
+        assertNotNull(testuser);
+        assertEquals(testuser.getUsername(), "Anders And");
     }
 }
