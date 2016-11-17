@@ -31,17 +31,18 @@ public class DataAccessObjectImpl implements DataAccessObject {
     @Override
     public ArrayList<User> getTeamMembers(int team_id) {
         ArrayList<User> teamusers = new ArrayList<>();
-        sql = "select * from user where user_id = (select * from team_member where team_id ="+team_id+")";
+        sql = "select * from user where user_id = (select * from team_member where team_id =" + team_id + ")";
         try {
-            if(rs.next()){
+            while (rs.next()) {
                 int uid = rs.getInt("user_id");
                 String name = rs.getString("username");
                 String pw = rs.getString("password");
                 boolean adm = rs.getBoolean("admin");
                 User returner = new User(uid, name, pw, adm);
                 teamusers.add(returner);
-            } return teamusers;
-        } catch (SQLException ex){
+            }
+            return teamusers;
+        } catch (SQLException ex) {
             Logger.getLogger(DataAccessObjectImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
@@ -49,7 +50,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
 
     @Override
     public ArrayList<Team> getTeams() {
-        
+
     }
 
     @Override
@@ -71,12 +72,24 @@ public class DataAccessObjectImpl implements DataAccessObject {
 
     @Override
     public Team getTeam(String teamname) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sql = "select * from team where teamname=" + teamname;
+        try {
+            if (rs.next()) {
+                int tid = rs.getInt("team_id");
+                String name = rs.getString("teamname");
+                Team returner = new Team(tid, name);
+                return returner;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataAccessObjectImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
     }
 
     @Override
     public ArrayList<User> getUsers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     @Override
