@@ -56,7 +56,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
             while (rs.next()) {
                 int tid = rs.getInt("team_id");
                 String name = rs.getString("teamname");
-                Team team = new Team(tid, name);
+                Team team = new Team(tid, name, getTeamMembers(tid));
                 returnList.add(team);
 
             }
@@ -77,7 +77,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
             if (rs.next()) {
                 int tid = rs.getInt("team_id");
                 String name = rs.getString("teamname");
-                Team returner = new Team(tid, name);
+                Team returner = new Team(tid, name, getTeamMembers(id));
                 return returner;
             }
         } catch (SQLException ex) {
@@ -98,7 +98,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
             if (rs.next()) {
                 int tid = rs.getInt("team_id");
                 String name = rs.getString("teamname");
-                Team returner = new Team(tid, name);
+                Team returner = new Team(tid, name, getTeamMembers(tid));
                 return returner;
             }
         } catch (SQLException ex) {
