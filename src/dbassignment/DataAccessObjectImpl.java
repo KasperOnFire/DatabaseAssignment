@@ -16,9 +16,9 @@ public class DataAccessObjectImpl implements DataAccessObject {
     private Statement stmt = null;
     private ResultSet rs = null;
 
-    public DataAccessObjectImpl() {
+    public DataAccessObjectImpl(DBConnector inputcon) {
         try {
-            db = new DBConnector();
+            db = inputcon;
             conn = db.getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -31,7 +31,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
     @Override
     public ArrayList<User> getTeamMembers(int team_id) {
         ArrayList<User> teamusers = new ArrayList<>();
-        sql = "select * from user where user_id = (select * from team_member where team_id =" + team_id + ")";
+        sql = "select * from team_member natural join user where team_id =" + team_id;
         try {
             while (rs.next()) {
                 int uid = rs.getInt("user_id");
@@ -52,20 +52,16 @@ public class DataAccessObjectImpl implements DataAccessObject {
     public ArrayList<Team> getTeams() {
         ArrayList<Team> returnList = new ArrayList();
         sql = "select * from team";
-        try
-        {
-            if(rs.next())
-            {
+        try {
+            while (rs.next()) {
                 int tid = rs.getInt("team_id");
                 String name = rs.getString("teamname");
                 Team team = new Team(tid, name);
                 returnList.add(team);
-                
+
             }
             return returnList;
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             Logger.getLogger(DataAccessObjectImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
@@ -105,26 +101,22 @@ public class DataAccessObjectImpl implements DataAccessObject {
         return null;
     }
 
-        @Override
+    @Override
     public ArrayList<User> getUsers() {
         ArrayList<User> returnList = new ArrayList();
         sql = "select * from user";
-        try
-        {
-            if(rs.next())
-            {
+        try {
+            while (rs.next()) {
                 int uid = rs.getInt("user_id");
                 String name = rs.getString("username");
                 String pw = rs.getString("password");
                 boolean adm = rs.getBoolean("admin");
                 User user = new User(uid, name, pw, adm);
                 returnList.add(user);
-                
+
             }
             return returnList;
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             Logger.getLogger(DataAccessObjectImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
