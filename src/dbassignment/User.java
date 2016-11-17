@@ -27,5 +27,12 @@ public abstract class User implements DataAccessObject {
     public User getUser(String username) {
         return null;
     }
+    
+    @Override
+    public String toString()
+    {
+        return "user_id " + user_id + ", username " + username + ", password " + password + ", admin " + admin;
+    }
+            
 
 }
