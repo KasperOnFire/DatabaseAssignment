@@ -14,6 +14,10 @@ public class DataAccessObjectImpl implements DataAccessObject {
     private DBConnector db = null;
     private Connection conn = null;
 
+    
+    //The class constructor gives access to the getters in the class, 
+    //which give access to the database. The constructor also opens a 
+    //connection to the database.
     public DataAccessObjectImpl(DBConnector inputcon) {
         try {
             db = inputcon;
@@ -24,6 +28,11 @@ public class DataAccessObjectImpl implements DataAccessObject {
         }
     }
 
+    
+    //The getter methods are relatively self-explanatory due to proper naming.
+    
+    //getTeamMembers returns the users in the database that are members 
+    //of the selected team.
     @Override
     public ArrayList<User> getTeamMembers(int team_id) {
         ArrayList<User> teamusers = new ArrayList<>();
@@ -46,6 +55,8 @@ public class DataAccessObjectImpl implements DataAccessObject {
         return null;
     }
 
+    //getTeams returns all teams, including an ArrayList containing
+    //their members.
     @Override
     public ArrayList<Team> getTeams() {
         ArrayList<Team> returnList = new ArrayList();
@@ -67,6 +78,9 @@ public class DataAccessObjectImpl implements DataAccessObject {
         return null;
     }
 
+    
+    //getTeam returns a specific team, including its members.
+    //There are two versons of getTeam, this one searches by team id.
     @Override
     public Team getTeam(int id) {
         String sql = "select * from team where team_id=?";
@@ -87,6 +101,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
         return null;
     }
 
+    //And this one searches by teamname.
     @Override
     public Team getTeam(String teamname) {
         String sql = "select * from team where teamname=?";
@@ -108,6 +123,8 @@ public class DataAccessObjectImpl implements DataAccessObject {
         return null;
     }
 
+    
+    //getUsers returns all users and stores them in an ArrayList.
     @Override
     public ArrayList<User> getUsers() {
         ArrayList<User> returnList = new ArrayList();
@@ -131,6 +148,9 @@ public class DataAccessObjectImpl implements DataAccessObject {
         return null;
     }
 
+    //getUser searhes for a specific user.
+    //As with getTeam, there are two versions.
+    //This one searches by user id.
     @Override
     public User getUser(int id) {
         String sql = "select * from user where user_id=?";
@@ -153,6 +173,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
         return null;
     }
 
+    //This getUser version searches by username.
     @Override
     public User getUser(String username) {
         String sql = "select * from user where username=?";
