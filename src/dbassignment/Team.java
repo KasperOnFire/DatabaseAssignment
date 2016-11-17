@@ -31,11 +31,13 @@ public abstract class Team implements DataAccessObject {
     public Team getTeam(String teamname) {
         return null;
     }
-    
-    @Override
-    public String toString()
-    {
-        return "team_id " + team_id + ", teamname " + teamname;
+
+    public int getTeam_id() {
+        return team_id;
+    }
+
+    public String getTeamname() {
+        return teamname;
     }
 
 }
