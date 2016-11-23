@@ -1,4 +1,4 @@
-package dbassignment;
+package businessLogic;
 
 import java.util.ArrayList;
 

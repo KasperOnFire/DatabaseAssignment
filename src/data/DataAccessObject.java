@@ -1,5 +1,7 @@
-package dbassignment;
+package data;
 
+import businessLogic.Team;
+import businessLogic.User;
 import java.util.ArrayList;
 
 public interface DataAccessObject {

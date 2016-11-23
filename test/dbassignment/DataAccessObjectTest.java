@@ -1,5 +1,9 @@
 package dbassignment;
 
+import data.DataAccessObjectImpl;
+import data.DBConnector;
+import businessLogic.User;
+import businessLogic.Team;
 import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -17,6 +21,7 @@ public class DataAccessObjectTest {
         try {
             connector = new DBConnector();
         } catch (Exception ex) {
+            System.out.println(ex);
             fail();
         }
     }
